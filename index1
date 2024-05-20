@@ -1,0 +1,37 @@
+#index
+#button
+#dialog box
+
+<template>
+    <div class="ma-3 text-center">
+      <v-btn color="blue" @click="status_dialog = true"> Daftar </v-btn>
+      <p class="text-center">Nama Didaftarkan : {{ nama_daftar }}</p>
+      <v-dialog v-model="status_dialog" width="auto">
+        <v-card
+          max-width="400"
+          prepend-icon="mdi-update"
+          title="Pendaftaran"
+          text="Sila Penuhkan Maklumat"
+        >
+          <v-form class="ma-2">
+            <v-text-field v-model="nama" label="Nama"></v-text-field>
+          </v-form>
+          <template v-slot:actions>
+            <v-btn class="ms-auto" text="Ok" @click="daftar"></v-btn>
+          </template>
+        </v-card>
+      </v-dialog>
+    </div>
+  </template>
+  
+  <script setup>
+  const status_dialog = ref(false);
+  const nama = ref();
+  const nama_daftar = ref();
+  const daftar = () => {
+    status_dialog.value = false;
+    nama_daftar.value = nama.value;
+  };
+  </script>
+  
+  <style lang="scss" scoped></style>
